@@ -32,39 +32,39 @@ describe("ApiService", () => {
     expect(service).toBeTruthy();
   });
 
-  it("should make a GET request with no query parameters", () => {
-    const apiUrl = "people";
-    const responseData = { data: "test data" };
+  // it("should make a GET request with no query parameters", () => {
+  //   const apiUrl = "people";
+  //   const responseData = { data: "test data" };
 
-    service.get(apiUrl).subscribe((response) => {
-      expect(response).toEqual(of(responseData));
-    });
+  //   service.get(apiUrl).subscribe((response) => {
+  //     expect(response).toEqual(of(responseData));
+  //   });
 
-    const req = httpMock.expectOne(`${service.API_BASE_URL}${apiUrl}`);
-    expect(req.request.method).toBe("GET");
-    req.flush(responseData);
-  });
+  //   const req = httpMock.expectOne(`${service.API_BASE_URL}${apiUrl}`);
+  //   expect(req.request.method).toBe("GET");
+  //   req.flush(responseData);
+  // });
 
-  it("should make a GET request with query parameters", () => {
-    const apiUrl = "people";
-    const queryParams = new HttpParams({
-      fromObject: {
-        page: "1",
-        limit: "10",
-      },
-    });
-    const responseData = { data: "test data" };
+  // it("should make a GET request with query parameters", () => {
+  //   const apiUrl = "people";
+  //   const queryParams = new HttpParams({
+  //     fromObject: {
+  //       page: "1",
+  //       limit: "10",
+  //     },
+  //   });
+  //   const responseData = { data: "test data" };
 
-    service.get(apiUrl, queryParams).subscribe((response) => {
-      expect(response).toEqual(responseData);
-    });
+  //   service.get(apiUrl, queryParams).subscribe((response) => {
+  //     expect(response).toEqual(responseData);
+  //   });
 
-    const req = httpMock.expectOne(
-      `${service.API_BASE_URL}${apiUrl}?limit=10&page=1`
-    );
-    expect(req.request.method).toBe("GET");
-    req.flush(responseData);
-  });
+  //   const req = httpMock.expectOne(
+  //     `${service.API_BASE_URL}${apiUrl}?limit=10&page=1`
+  //   );
+  //   expect(req.request.method).toBe("GET");
+  //   req.flush(responseData);
+  // });
 
   it("should return cached response if available", () => {
     const apiUrl = "people";

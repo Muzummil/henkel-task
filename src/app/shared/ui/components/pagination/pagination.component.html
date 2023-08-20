@@ -1,0 +1,19 @@
+<div class="flex items-center justify-center mt-8">
+  <button
+    (click)="onPrevClick()"
+    [disabled]="currentPage == 1"
+    data-cy="prev-btn"
+    class="bg-castNameCardBgColor text-gray-700 px-4 py-2 rounded-l-md transition duration-300 ease-in-out hover:bg-gray-300 focus:outline-none"
+  >
+    Previous
+  </button>
+  <span class="px-4 text-gray-700">{{ currentPage }} / {{ totalPages }}</span>
+  <button
+    (click)="onNextClick()"
+    data-cy="next-btn"
+    [disabled]="currentPage == totalPages"
+    class="bg-castNameCardBgColor text-gray-700 px-4 py-2 rounded-r-md transition duration-300 ease-in-out hover:bg-gray-300 focus:outline-none"
+  >
+    Next
+  </button>
+</div>

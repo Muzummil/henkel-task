@@ -1,0 +1,121 @@
+<div *ngIf="loading$ | async; else content">
+  <app-loader></app-loader>
+</div>
+<!-- Data/Error Section -->
+<ng-template #content>
+  <div *ngIf="error$ | async as error">
+    <p class="text-red-800 text-center">Error: {{ error.errorMessage }}</p>
+  </div>
+  <div *ngIf="characterDetails$ | async as details">
+    <!-- Main container for displaying character details -->
+    <div
+      *ngIf="details.result as characterDetails"
+      class="rounded hover:scale-105 duration-500 transform transition overflow-hidden shadow-lg w-full h-full bg-cardBgColor"
+    >
+      <div
+        *ngIf="characterDetails?.properties as properties"
+        class="px-6 py-4 mb-4"
+      >
+        <!-- Back Button -->
+        <div>
+          <button
+            data-cy="all-characters"
+            (click)="backToCharactersList()"
+            class="bg-castNameCardBgColor cursor-pointer text-gray-700 px-3 py-2 rounded-md shadow-md hover:bg-gray-300 transition duration-300 ease-in-out focus:outline-none"
+          >
+            All Characters
+          </button>
+        </div>
+
+        <!-- Display the character's name -->
+        <div data-cy="character-name" class="character-name font-bold text-xl text-center mb-8">
+          {{ properties?.name }}
+        </div>
+
+        <!-- Display various character details -->
+        <div class="text-gray-700 flex flex-col gap-2">
+          <!-- Skin Color -->
+          <div
+            class="flex justify-between items-center border-b pb-2 border-movieBorderColor"
+          >
+            <div class="height-value font-medium text-headingsTextColor">
+              Skin Color
+            </div>
+            <div
+              class="max-w-[120px] text-headingsValueTextColor sm:max-w-full text-center"
+            >
+              {{ properties?.skin_color }}
+            </div>
+          </div>
+
+          <!-- Height detail -->
+          <div
+            class="flex justify-between items-center border-b pb-2 border-movieBorderColor"
+          >
+            <div class="height-value font-medium text-headingsTextColor">
+              Height
+            </div>
+            <div
+              class="max-w-[120px] text-headingsValueTextColor sm:max-w-full text-center"
+            >
+              {{ properties?.height }}
+            </div>
+          </div>
+
+          <!-- Gender detail -->
+          <div
+            class="flex justify-between items-center border-b pb-2 border-movieBorderColor"
+          >
+            <div class="font-medium text-headingsTextColor">Gender</div>
+            <div
+              class="max-w-[120px] text-headingsValueTextColor sm:max-w-full text-center"
+            >
+              {{ properties?.gender }}
+            </div>
+          </div>
+
+          <!-- Birth Year detail -->
+          <div
+            class="flex justify-between items-center border-b pb-2 border-movieBorderColor"
+          >
+            <div class="font-medium text-headingsTextColor">Birth Year</div>
+            <div
+              class="max-w-[120px] text-headingsValueTextColor sm:max-w-full text-center"
+            >
+              {{ properties?.birth_year }}
+            </div>
+          </div>
+
+          <!-- Planet -->
+          <div
+            class="flex justify-between items-center border-b pb-2 border-movieBorderColor"
+          >
+            <div class="font-medium text-headingsTextColor">Planets</div>
+            <div
+              class="max-w-[120px] text-headingsValueTextColor sm:max-w-full text-center"
+            >
+              <button
+                data-cy="check-plannets"
+                (click)="checkPlannets(characterDetails.properties.homeworld)"
+                class="bg-castNameCardBgColor cursor-pointer text-gray-700 px-3 py-2 rounded-md shadow-md hover:bg-gray-300 transition duration-300 ease-in-out focus:outline-none"
+              >
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="flex justify-start items-start">
+            <div class="font-medium text-headingsTextColor">Description</div>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <div class="text-center">
+              {{ characterDetails?.description }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

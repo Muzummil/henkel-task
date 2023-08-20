@@ -1,0 +1,102 @@
+<div *ngIf="loading$ | async; else content">
+  <app-loader></app-loader>
+</div>
+<!-- Data/Error Section -->
+<ng-template #content>
+  <div *ngIf="error$ | async as error">
+    <p class="text-red-800 text-center">Error: {{ error.errorMessage }}</p>
+  </div>
+  <!-- Render the character details if characterDetails$ has a truthy value -->
+  <div *ngIf="plannetDetails$ | async as details">
+    <!-- Main container for displaying character details -->
+    <div
+      *ngIf="details.result as result"
+      class="rounded hover:scale-105 duration-500 transform transition overflow-hidden shadow-lg w-full h-full bg-cardBgColor"
+    >
+      <div *ngIf="result?.properties as properties" class="px-6 py-4 mb-4">
+        <!-- Back Button -->
+        <div>
+          <button
+            data-cy="back-to-characters"
+            (click)="backToCharacter()"
+            class="bg-castNameCardBgColor cursor-pointer text-gray-700 px-3 py-2 rounded-md shadow-md hover:bg-gray-300 transition duration-300 ease-in-out focus:outline-none"
+          >
+            Back to Character
+          </button>
+        </div>
+
+        <!-- Title -->
+        <div class="font-bold text-xl text-center mb-8">Plannet Details</div>
+
+        <!-- Display various character details -->
+        <div class="text-gray-700 flex flex-col gap-2">
+          <!-- Diameter -->
+          <div
+            class="flex justify-between items-center border-b pb-2 border-movieBorderColor"
+          >
+            <div class="height-value font-medium text-headingsTextColor">
+              Diameter
+            </div>
+            <div
+              data-cy="diameter-value"
+              class="max-w-[120px] text-headingsValueTextColor sm:max-w-full text-center"
+            >
+              {{ properties?.diameter }}
+            </div>
+          </div>
+
+          <!-- rotation period -->
+          <div
+            class="flex justify-between items-center border-b pb-2 border-movieBorderColor"
+          >
+            <div class="height-value font-medium text-headingsTextColor">
+              Rotation Period
+            </div>
+            <div
+              class="max-w-[120px] text-headingsValueTextColor sm:max-w-full text-center"
+            >
+              {{ properties?.rotation_period }}
+            </div>
+          </div>
+
+          <!-- orbital_period -->
+          <div
+            class="flex justify-between items-center border-b pb-2 border-movieBorderColor"
+          >
+            <div class="font-medium text-headingsTextColor">Orbital Period</div>
+            <div
+            data-cy="orbital-period"
+              class="max-w-[120px] text-headingsValueTextColor sm:max-w-full text-center"
+            >
+              {{ properties?.orbital_period }}
+            </div>
+          </div>
+
+          <!-- population -->
+          <div
+            class="flex justify-between items-center border-b pb-2 border-movieBorderColor"
+          >
+            <div class="font-medium text-headingsTextColor">population</div>
+            <div
+              data-cy="population"
+              class="max-w-[120px] text-headingsValueTextColor sm:max-w-full text-center"
+            >
+              {{ properties?.population }}
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="flex justify-start items-start">
+            <div class="font-medium text-headingsTextColor">Description</div>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <div class="text-center">
+              {{ result.description }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

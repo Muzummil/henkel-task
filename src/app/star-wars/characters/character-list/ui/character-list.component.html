@@ -1,0 +1,46 @@
+<div *ngIf="loading$ | async; else content">
+  <app-loader></app-loader>
+</div>
+<!-- Data/Error Section -->
+<ng-template #content>
+  <div *ngIf="error$ | async as error">
+    <p class="text-red-800 text-center">Error: {{ error.errorMessage }}</p>
+  </div>
+  <!-- Characters List Section -->
+  <div *ngIf="charactersList$ | async as charactersList">
+    <div
+      class="rounded hover:scale-105 duration-500 transform transition overflow-hidden shadow-lg w-full h-full bg-cardBgColor"
+    >
+      <div class="px-6 py-4 mb-4">
+        <div class="text-gray-700 flex flex-col gap-2">
+          <div
+            class="flex font-medium text-headingsTextColor justify-center items-start"
+          >
+            List of Characters
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+            <div
+              data-cy="character-name"
+              class="rounded text-headingsValueTextColor cursor-pointer hover:scale-105 p-4 duration-500 transform transition overflow-hidden shadow-sm w-full h-full bg-castNameCardBgColor"
+              *ngFor="
+                let character of charactersList.results;
+                trackBy: trackByChacterId
+              "
+              (click)="gotoCharacterDetails(character.uid)"
+            >
+              {{ character.name }}
+            </div>
+          </div>
+
+          <app-pagination
+            [totalItems]="charactersList.total_records"
+            [itemsPerPage]="perPage$.value"
+            [currentPage]="currentPage$.value"
+            (pageChanged)="onPageChanged($event)"
+          ></app-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

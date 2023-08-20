@@ -1,12 +1,13 @@
-import { TestBed } from "@angular/core/testing";
+// External Dependencies
 import {
-  HttpClientTestingModule,
   HttpTestingController,
+  HttpClientTestingModule,
 } from "@angular/common/http/testing";
-import { of } from "rxjs";
+import { TestBed } from "@angular/core/testing";
+import { HttpParams } from "@angular/common/http";
+// Internal Dependencies
 import { ApiService } from "./api.service";
 import { StorageService } from "../storage-service/storage.service";
-import { HttpParams } from "@angular/common/http";
 
 describe("ApiService", () => {
   let service: ApiService;

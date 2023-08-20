@@ -4,10 +4,10 @@ import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { importProvidersFrom } from "@angular/core";
 // Internal Dependencies
-import { CharacterListService } from "./characters/character-list/data-access/character-list.service";
 import { PlannetService } from "./characters/character-plannets/data-access/plannet.service";
 import { CharactesListEffects } from "./characters/character-list/store/effects/character.effects";
 import { charactersListReducer } from "./characters/character-list/store/reducers/character.reducer";
+import { CharacterListService } from "./characters/character-list/data-access/character-list.service";
 import { CharacterDetailsService } from "./characters/character-details/data-access/character-details.service";
 import { PlannetDetailsEffects } from "./characters/character-plannets/store/effects/plannet-details.effects";
 import { plannetDetailsReducer } from "./characters/character-plannets/store/reducers/plannet-details.reducer";

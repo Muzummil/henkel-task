@@ -1,10 +1,12 @@
+// External Dependencies
+import { Store } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular/router';
-import { Observable, of } from 'rxjs';
+// Internal Dependencies
 import { CharacterDetails } from '../models/CharacterDetails';
-import { Store } from '@ngrx/store';
-import { loadCharacteDetails } from '../store/actions/character-details.actions';
 import { CharacterDetailsState } from '../models/CharacterDetailsState';
+import { loadCharacteDetails } from '../store/actions/character-details.actions';
 import { selectCharacterDetails } from '../store/selectors/character-details.selectors';
 
 export const CharacterDetailsResolver: ResolveFn<CharacterDetails | null> = (

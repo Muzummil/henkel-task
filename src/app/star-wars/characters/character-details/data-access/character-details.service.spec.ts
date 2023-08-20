@@ -1,9 +1,11 @@
+// External Dependencies
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { CharacterDetailsService } from './character-details.service';
-import { ApiService } from '@src/app/shared/data-access/api-service/api.service';
+// Internal Dependencies
 import { of } from 'rxjs';
 import { CharacterDetails } from '../models/CharacterDetails';
+import { CharacterDetailsService } from './character-details.service';
+import { ApiService } from '@src/app/shared/data-access/api-service/api.service';
 
 describe('CharacterDetailsService', () => {
   let service: CharacterDetailsService;
